@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const AddToyPage = () => {
   const handleSubmit = (e) => {
@@ -25,6 +26,25 @@ const AddToyPage = () => {
       description,
     };
     console.log(toysCard);
+    fetch("http://localhost:5000/addTechToy", {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(toysCard)
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Product Added Successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
   };
 
   return (
@@ -114,10 +134,12 @@ const AddToyPage = () => {
               required
             >
               <option value="">Select Sub-category</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Educational">Educational</option>
-              <option value="Remote Control">Remote Control</option>
-              <option value="Robotics">Robotics</option>
+              <option value="CircuitMasters">CircuitMasters</option>
+              <option value="ElectroniXplorers">ElectroniXplorers</option>
+              <option value="DigitalDreams">DigitalDreams</option>
+              <option value="Drone">Drone</option>
+              <option value="RoboBuddies">RoboBuddies</option>
+              <option value="Camera">Camera</option>
             </select>
           </div>
           <div>
@@ -144,7 +166,7 @@ const AddToyPage = () => {
               Rating
             </label>
             <input
-              type="number"
+              type="text"
               id="rating"
               name="rating"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#ffc837]"
