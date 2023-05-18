@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import './Login.css'
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
-
+  const {user} = useContext(AuthContext)
+  console.log(user);
   const handleLogin = (e) => {
     e.preventDefault();
 

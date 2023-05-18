@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState("");
+  const {signUp} = useContext(AuthContext)
 
   const handleRegistration = (e) => {
     e.preventDefault();
@@ -33,11 +35,9 @@ const Register = () => {
           "Password should be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one number.";
       }
     }
-
     setError(errorMessage);
-
     if (!errorMessage) {
-      // Continue with registration process
+      signUp(email,password)
     }
   };
 
