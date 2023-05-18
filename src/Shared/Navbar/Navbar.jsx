@@ -83,7 +83,7 @@ const Navbar = () => {
         {user && (
           <div className="avatar">
             <div className="w-12 rounded-full">
-              <img src={user?.photoURL} />
+              <img title={user?.displayName} src={user?.photoURL} />
             </div>
           </div>
         )}
