@@ -56,6 +56,7 @@ const Register = () => {
         updateUserProfile(newUser, name, photoURL)
         form.reset()
       })
+      .catch(error=> setError(error.message))
     }
   };
 

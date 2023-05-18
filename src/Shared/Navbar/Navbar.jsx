@@ -1,24 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import './Navbar.css'
+import "./Navbar.css";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const list = (
     <>
       <li>
-        <Link className="navbarItems" to={'/'}>Home</Link>
+        <Link className="navbarItems" to={"/"}>
+          Home
+        </Link>
       </li>
       <li>
-        <Link className="navbarItems" to={''}>All Toys</Link>
+        <Link className="navbarItems" to={""}>
+          All Toys
+        </Link>
       </li>
       <li>
-        <Link className="navbarItems" to={''}>Blog</Link>
+        <Link className="navbarItems" to={""}>
+          Blog
+        </Link>
       </li>
       <li>
-        <Link className="navbarItems" to={''}>Add A Toy</Link>
+        <Link className="navbarItems" to={""}>
+          Add A Toy
+        </Link>
       </li>
       <li>
-        <Link className="navbarItems" to={''}>My Toys</Link>
+        <Link className="navbarItems" to={""}>
+          My Toys
+        </Link>
       </li>
     </>
   );
@@ -50,7 +62,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-0 m-0 p-0">
-          <a className="md:text-3xl text-xl font-extrabold text-amber-600 w-full ">TechToyLand</a>
+          <a className="md:text-3xl text-xl font-extrabold text-amber-600 w-full ">
+            TechToyLand
+          </a>
           <img
             className="md:h-16 md:w-28 w-16 h-10"
             src="https://i.ibb.co/yyCJKrz/Tech-Toys-1.png"
@@ -61,8 +75,18 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{list}</ul>
       </div>
+      
       <div className="navbar-end">
-        <Link to={'/login'}><button className="btn-grad">Login</button></Link>
+      {user && (
+        <div className="avatar">
+          <div className="w-12 rounded-full">
+            <img src={user?.photoURL} />
+          </div>
+        </div>
+      )}
+        <Link to={"/login"}>
+          <button className="btn-grad">Login</button>
+        </Link>
       </div>
     </div>
   );

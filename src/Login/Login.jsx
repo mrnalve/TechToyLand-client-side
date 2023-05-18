@@ -1,26 +1,43 @@
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import './Login.css'
+import "./Login.css";
 import { AuthContext } from "../Provider/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [error, setError] = useState("");
-  const {user} = useContext(AuthContext)
+  const { user, login } = useContext(AuthContext);
   console.log(user);
   const handleLogin = (e) => {
     e.preventDefault();
-
-    const form = e.target
-    const email = form.email.value
-    const password = form.password.value
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
     // email and password validation
-
     if (!email) {
       setError("Please enter your email.");
     } else if (!password) {
       setError("Please enter your password.");
-    } 
+    }
+    // call the firebase login
+    login()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        toast('Successfully Login!', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      })
+      .catch((error) => setError(error.message));
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -69,6 +86,7 @@ const Login = () => {
             >
               Login
             </button>
+            <ToastContainer/>
           </div>
         </form>
         <p className="text-center text-gray-500 text-sm mb-4">
