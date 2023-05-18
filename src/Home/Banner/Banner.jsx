@@ -3,7 +3,7 @@ import BannerContent from "./BannerContent";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full rounded-xl">
       <div id="slide1" className="carousel-item relative w-full">
         <img
           src="https://i.ibb.co/hLShdTk/banner1.jpg"
