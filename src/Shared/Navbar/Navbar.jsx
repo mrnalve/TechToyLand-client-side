@@ -4,7 +4,10 @@ import "./Navbar.css";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = ()=>{
+    logOut()
+  }
   const list = (
     <>
       <li>
@@ -75,18 +78,22 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{list}</ul>
       </div>
-      
+
       <div className="navbar-end">
-      {user && (
-        <div className="avatar">
-          <div className="w-12 rounded-full">
-            <img src={user?.photoURL} />
+        {user && (
+          <div className="avatar">
+            <div className="w-12 rounded-full">
+              <img src={user?.photoURL} />
+            </div>
           </div>
-        </div>
-      )}
-        <Link to={"/login"}>
-          <button className="btn-grad">Login</button>
-        </Link>
+        )}
+        {user ? (
+          <button onClick={handleLogout} className="btn-grad">Log out</button>
+        ) : (
+          <Link to={"/login"}>
+            <button className="btn-grad">Login</button>
+          </Link>
+        )}
       </div>
     </div>
   );

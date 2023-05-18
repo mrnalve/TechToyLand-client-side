@@ -3,12 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import { AuthContext } from "../Provider/AuthProvider";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { user, login } = useContext(AuthContext);
+  const { user, login, googleSignIn } = useContext(AuthContext);
   console.log(user);
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,11 +22,11 @@ const Login = () => {
       setError("Please enter your password.");
     }
     // call the firebase login
-    login()
+    login(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        toast('Successfully Login!', {
+        toast("Successfully Login!", {
           position: "top-center",
           autoClose: 2000,
           hideProgressBar: false,
@@ -35,7 +35,8 @@ const Login = () => {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
+        form.reset()
       })
       .catch((error) => setError(error.message));
   };
@@ -79,20 +80,22 @@ const Login = () => {
             <a href="#" className="text-[#ff8008] hover:underline">
               Forgot Password?
             </a>
-            <button
-              type="submit"
-              className="btn-grad"
-              style={{ padding: "12px 28px" }}
-            >
-              Login
-            </button>
-            <ToastContainer/>
+            <div>
+              <button
+                type="submit"
+                className="btn-grad"
+                style={{ padding: "12px 28px" }}
+              >
+                Login
+              </button>
+              <ToastContainer/>
+            </div>
           </div>
         </form>
         <p className="text-center text-gray-500 text-sm mb-4">
           Or login with Google:
         </p>
-        <button className="border rounded-xl px-4 py-2 rounded-md w-full mb-4 hover:bg-slate-100 hover:scale-95 hover:transition-all">
+        <button onClick={()=> googleSignIn()} className="border rounded-xl px-4 py-2 rounded-md w-full mb-4 hover:bg-slate-100 hover:scale-95 hover:transition-all">
           <FcGoogle className="inline-block mx-2 h-6 w-auto" />
           Sign in with Google
         </button>
