@@ -5,9 +5,9 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const handleLogout = ()=>{
-    logOut()
-  }
+  const handleLogout = () => {
+    logOut();
+  };
   const list = (
     <>
       <li>
@@ -25,16 +25,20 @@ const Navbar = () => {
           Blog
         </Link>
       </li>
-      <li>
-        <Link className="navbarItems" to={""}>
-          Add A Toy
-        </Link>
-      </li>
-      <li>
-        <Link className="navbarItems" to={""}>
-          My Toys
-        </Link>
-      </li>
+      {user && (
+        <>
+          <li>
+            <Link className="navbarItems" to={""}>
+              Add A Toy
+            </Link>
+          </li>
+          <li>
+            <Link className="navbarItems" to={""}>
+              My Toys
+            </Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -88,7 +92,9 @@ const Navbar = () => {
           </div>
         )}
         {user ? (
-          <button onClick={handleLogout} className="btn-grad">Log out</button>
+          <button onClick={handleLogout} className="btn-grad">
+            Log out
+          </button>
         ) : (
           <Link to={"/login"}>
             <button className="btn-grad">Login</button>
