@@ -13,26 +13,12 @@ const Login = () => {
     const email = form.email.value
     const password = form.password.value
     // email and password validation
-    let errorMessage = "";
-    if (!email) {
-      errorMessage = "Please enter your email.";
-    } else if (!password) {
-      errorMessage = "Please enter your password.";
-    } else {
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        errorMessage = "Please enter a valid email address.";
-      }
 
-      // Password validation
-      const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/;
-      if (!passwordRegex.test(password)) {
-        errorMessage =
-          "Password should be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one number.";
-      }
-    }
-    setError(errorMessage);
+    if (!email) {
+      setError("Please enter your email.");
+    } else if (!password) {
+      setError("Please enter your password.");
+    } 
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -92,7 +78,7 @@ const Login = () => {
         </button>
         <p className="text-center text-gray-500 text-sm">
           Don't have an account?{" "}
-          <Link to="/registration" className="text-blue-500 hover:underline">
+          <Link to="/registration" className="text-[#ff8008] hover:underline">
             Register here
           </Link>
         </p>
