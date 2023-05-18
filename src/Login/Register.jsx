@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [error, setError] = useState("");
-  const {signUp} = useContext(AuthContext)
+  const {signUp, updateUserProfile} = useContext(AuthContext)
 
   const handleRegistration = (e) => {
     e.preventDefault();
@@ -38,6 +40,22 @@ const Register = () => {
     setError(errorMessage);
     if (!errorMessage) {
       signUp(email,password)
+      .then(result =>{
+        const newUser = result.user
+        console.log(newUser);
+        toast('Successfully Registered!', {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+        updateUserProfile(newUser, name, photoURL)
+        form.reset()
+      })
     }
   };
 
@@ -115,6 +133,7 @@ const Register = () => {
             >
               Register
             </button>
+            <ToastContainer/>
             <p className="text-center text-gray-500 text-sm">
               Already have an account?{" "}
               <Link to="/login" className="text-[#ff8008] hover:underline">
