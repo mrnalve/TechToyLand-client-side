@@ -85,7 +85,7 @@ const Navbar = () => {
 
       <div className="navbar-end">
         {user && (
-          <div className="avatar">
+          <div className="avatar mx-2">
             <div className="w-12 rounded-full">
               <img title={user?.displayName} src={user?.photoURL} />
             </div>

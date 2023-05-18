@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const AddToyPage = () => {
+  const {user} = useContext(AuthContext)
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -99,6 +101,7 @@ const AddToyPage = () => {
               id="sellerName"
               name="sellerName"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#ffc837]"
+              defaultValue={user?.displayName}
               placeholder="Enter Seller Name"
               required
             />
@@ -115,6 +118,7 @@ const AddToyPage = () => {
               id="sellerEmail"
               name="sellerEmail"
               className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#ffc837]"
+              defaultValue={user?.email}
               placeholder="Enter Seller Email"
               required
             />
