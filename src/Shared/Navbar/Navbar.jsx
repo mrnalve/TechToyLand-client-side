@@ -28,7 +28,7 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <Link className="navbarItems" to={""}>
+            <Link className="navbarItems" to={"/addToy"}>
               Add A Toy
             </Link>
           </li>
@@ -42,7 +42,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 border-b ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
