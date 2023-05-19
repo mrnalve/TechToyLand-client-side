@@ -11,8 +11,8 @@ const Home = () => {
             <Banner></Banner>
             <Gallery></Gallery>
             <ShopByCategory></ShopByCategory>
-            <PromotionsSection></PromotionsSection>
             <CustomerReviews></CustomerReviews>
+            <PromotionsSection></PromotionsSection>
         </>
     );
 };

@@ -1,8 +1,9 @@
 import React from "react";
 import takaSign from "../../../public/taka.png";
+import { Link } from "react-router-dom";
 
 const ToyCard = ({ toy }) => {
-  const { pictureUrl, productName, price, rating } = toy;
+  const { _id,  pictureUrl, productName, price, rating } = toy;
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
@@ -31,9 +32,9 @@ const ToyCard = ({ toy }) => {
           />
         </svg>
       </div>
-      <button className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
+      <Link to={`/toysDetails/${_id}`}><button className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
         View Details
-      </button>
+      </button></Link>
     </div>
   );
 };
