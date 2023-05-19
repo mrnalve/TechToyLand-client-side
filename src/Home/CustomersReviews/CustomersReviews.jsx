@@ -26,11 +26,11 @@ const CustomerReviews = () => {
   ];
 
   return (
-    <section className="bg-gray-100 py-8">
+    <section className="bg-gray-100 py-8 my-4 rounded-xl">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl text-center font-semibold mb-6">Customer Reviews</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {reviews.slice(0, 3).map((review) => (
+          {reviews.map((review) => (
             <div key={review.id} className="bg-white rounded-lg shadow-md p-4">
               <div className="flex items-center mb-2">
                 <img src={review.image} alt={review.name} className="w-8 h-8 rounded-full" />
