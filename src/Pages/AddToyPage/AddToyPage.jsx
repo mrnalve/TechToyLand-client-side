@@ -138,11 +138,11 @@ const AddToyPage = () => {
               required
             >
               <option value="">Select Sub-category</option>
-              <option value="CircuitMasters">CircuitMasters</option>
+              <option value="Tablets">Tablets</option>
               <option value="ElectroniXplorers">ElectroniXplorers</option>
               <option value="DigitalDreams">DigitalDreams</option>
               <option value="Drone">Drone</option>
-              <option value="RoboBuddies">RoboBuddies</option>
+              <option value="Coding-Robot">Coding-Robot</option>
               <option value="Camera">Camera</option>
             </select>
           </div>

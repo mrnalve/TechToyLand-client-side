@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ToyCard from "./ToyCard";
 
 const ShopByCategory = () => {
-  const [activeTab, setActiveTab] = useState("ElectroniXplorers")
+  const [activeTab, setActiveTab] = useState("Tablets")
   const [toys, setToys] = useState([])
   const handleTabChange = tabName => {
     setActiveTab(tabName)
@@ -20,8 +20,8 @@ const ShopByCategory = () => {
       <div className="container mx-auto px-4">
         <div>
           <div className="flex justify-center space-x-4">
-            <button onClick={()=> handleTabChange("ElectroniXplorers")} className={`py-2 px-4 bg-white text-black border-none cursor-pointer rounded-xl hover:bg-gray-300 focus:bg-[#ffc837] focus:rounded-xl ${activeTab === "ElectroniXplorers" ? 'bg-[#ffc837] rounded-xl' : ''}`}>
-            ElectroniXplorers
+            <button onClick={()=> handleTabChange("Tablets")} className={`py-2 px-4 bg-white text-black border-none cursor-pointer rounded-xl hover:bg-gray-300 focus:bg-[#ffc837] focus:rounded-xl ${activeTab === "Tablets" ? 'bg-[#ffc837] rounded-xl' : ''}`}>
+            Tablets
             </button>
             <button onClick={()=> handleTabChange("Drone")} className={`py-2 px-4 bg-white text-black border-none cursor-pointer rounded-xl hover:bg-gray-300 focus:bg-[#ffc837] focus:rounded-xl ${activeTab === "Drone" ? 'bg-[#ffc837] rounded-xl' : ''}`}>
             Drone

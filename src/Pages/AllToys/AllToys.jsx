@@ -16,6 +16,7 @@ const AllToys = () => {
   };
   return (
     <div className="overflow-x-auto my-8">
+      <h2>{allToysData.length}</h2>
       <div className="flex justify-center my-4">
         <input
           type="text"
