@@ -33,7 +33,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="navbarItems" to={""}>
+            <Link className="navbarItems" to={"/myToys"}>
               My Toys
             </Link>
           </li>
