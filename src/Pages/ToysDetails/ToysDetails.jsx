@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const ToysDetails = () => {
+  const [review, setReview] = useState();
+  const { user } = useContext(AuthContext);
+  const { displayName, photoURL } = user;
   const toys = useLoaderData();
   const {
     pictureUrl,
@@ -14,12 +19,36 @@ const ToysDetails = () => {
     quantity,
     description,
   } = toys[0];
-  
+
   // change title
   useEffect(() => {
     document.title = "TechToy | ToysDetails";
   }, []);
-
+  // handle review
+  const handleReview = async () => {
+    const { value: text } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Message",
+      inputPlaceholder: "Type your message here...",
+      inputAttributes: {
+        "aria-label": "Type your message here",
+      },
+      showCancelButton: true,
+    });
+    if (text) {
+      setReview(text);
+    }
+    const userReview = { review, displayName, photoURL };
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userReview),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row">
@@ -32,14 +61,22 @@ const ToysDetails = () => {
           <p className="text-gray-500 mb-4">Email: {sellerEmail}</p>
           <p className="text-lg font-semibold mb-2">Price: {price}</p>
           <p className="text-lg font-semibold mb-2">Rating: {rating}</p>
-          <p className="text-lg font-semibold mb-2">Available Quantity: {quantity}</p>
+          <p className="text-lg font-semibold mb-2">
+            Available Quantity: {quantity}
+          </p>
+          <div className="flex gap-3">
+            <button className="btn-grad">Add To Cart</button>
+            <button onClick={handleReview} className="btn-grad">
+              Review
+            </button>
+          </div>
         </div>
       </div>
       <div className="mt-8">
         <h3 className="text-xl font-bold mb-2">Description</h3>
         <p>{description}</p>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

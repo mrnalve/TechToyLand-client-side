@@ -8,7 +8,7 @@ const ShopByCategory = () => {
     setActiveTab(tabName)
   }
   useEffect(()=>{
-    fetch(`http://localhost:5000/toysByCategory/${activeTab}`)
+    fetch(`https://tech-toy-land-server-side.vercel.app/toysByCategory/${activeTab}`)
     .then(res=>res.json())
     .then(data => {
       console.log(data);

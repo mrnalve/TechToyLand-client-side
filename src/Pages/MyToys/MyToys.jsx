@@ -10,7 +10,7 @@ const MyToys = () => {
   const [myToys, setMyToys] = useState([]);
   const [sorting, setSorting] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:5000/myToys/${user?.email}`)
+    fetch(`https://tech-toy-land-server-side.vercel.app/myToys/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setMyToys(data);
@@ -34,7 +34,7 @@ const MyToys = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deleteToys/${_id}`, {
+        fetch(`https://tech-toy-land-server-side.vercel.app/deleteToys/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -61,7 +61,7 @@ const MyToys = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/sortingByPrice?sort=${sorting}&email=${user.email}`)
+    fetch(`https://tech-toy-land-server-side.vercel.app/sortingByPrice?sort=${sorting}&email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyToys(data));
   }, [sorting]);

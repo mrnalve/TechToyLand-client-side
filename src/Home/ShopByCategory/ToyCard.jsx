@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import takaSign from "../../../public/taka.png";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Provider/AuthProvider";
-import Swal from "sweetalert2";
 
 const ToyCard = ({ toy }) => {
   const { _id, pictureUrl, productName, price, rating } = toy;
-  const { user } = useContext(AuthContext);
   const navigate = useNavigate()
 
   return (

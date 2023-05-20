@@ -34,7 +34,7 @@ const AddToyPage = () => {
       description,
     };
     console.log(toysCard);
-    fetch("http://localhost:5000/addTechToy", {
+    fetch("https://tech-toy-land-server-side.vercel.app/addTechToy", {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

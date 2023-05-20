@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Blog = () => {
+  useEffect(()=>{
+    document.title = 'TechToy | Blog'
+},[])
   const faqs = [
     {
       question: 'What is an access token and refresh token? How do they work and where should we store them on the client-side?',
-      answer: 'An access token and refresh token are commonly used in authentication and authorization systems to grant and manage access to protected resources',
+      answer: 'An access token and refresh token are commonly used in authentication and authorization systems to grant and manage access to protected resources. An access token is a short-lived credential that authenticates and authorizes access to resources, while a refresh token is a long-lived credential used to obtain new access tokens. Store them securely on the client-side, such as using HTTP-only secure cookies or secure storage mechanisms provided by the operating system in native mobile applications.',
     },
     {
-      question: 'How can I contact customer support?',
-      answer: 'You can contact our customer support team by emailing support@example.com or calling 123-456-7890.',
+      question: 'Compare SQL and NoSQL databases?',
+      answer: 'SQL databases are relational databases that use structured query language (SQL) to define and manipulate data. They have predefined schemas, support transactions, and ensure data consistency. NoSQL databases, on the other hand, are non-relational databases that provide flexible schemas, horizontal scalability, and high-performance handling of unstructured and semi-structured data.',
     },
     {
-      question: 'Do you offer international shipping?',
-      answer: 'Yes, we offer international shipping to select countries. Please check our shipping policy for more information.',
+      question: 'What is express js? What is Nest JS?',
+      answer: "Express.js is a minimal and flexible web application framework for Node.js. It provides a set of features and tools to build web applications and APIs easily. Express.js is known for its simplicity, lightweight nature, and extensive middleware ecosystem, allowing developers to create server-side applications efficiently. NestJS is a progressive, TypeScript based web application framework that is built on top of Express.js. It provides a structured and modular approach to building scalable and maintainable server-side applications.",
     },
     {
       question: 'What is your return policy?',
-      answer: 'Our return policy allows you to return products within 30 days of purchase. Please refer to our return policy page for detailed instructions.',
+      answer: "MongoDB's aggregate method is used to perform advanced operations on collections of documents. It works by applying a sequence of stages to the input documents. Each stage performs a specific operation, such as filtering, grouping, or projecting the data. The result is a transformed set of documents based on the specified operations in the aggregation pipeline.",
     },
   ];
 

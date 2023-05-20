@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         {
           path: '/allToys',
           element: <AllToys></AllToys>,
-          loader: ()=> fetch('http://localhost:5000/addTechToy')
+          loader: ()=> fetch('https://tech-toy-land-server-side.vercel.app/addTechToy')
         },
         {
           path: '/myToys',
@@ -47,12 +47,12 @@ const router = createBrowserRouter([
         {
           path: '/toysDetails/:id',
           element: <PrivateRoute><ToysDetails></ToysDetails></PrivateRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/toysDetails/${params.id}`)
+          loader: ({params})=> fetch(`https://tech-toy-land-server-side.vercel.app/toysDetails/${params.id}`)
         },
         {
           path: '/toysUpdate/:id', 
           element: <ToysUpdate></ToysUpdate>,
-          loader: ({params})=> fetch(`http://localhost:5000/toysDetails/${params.id}`)
+          loader: ({params})=> fetch(`https://tech-toy-land-server-side.vercel.app/toysDetails/${params.id}`)
         },
         {
           path: '/blog',

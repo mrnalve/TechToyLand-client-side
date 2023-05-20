@@ -6,10 +6,10 @@ const AllToys = () => {
   const toysData = useLoaderData();
   const [allToysData, setAllToysData] = useState(toysData);
   const [searchText, setSearchText] = useState("");
-
+  console.log(allToysData);
   // handle search button
   const handleSearch = () => {
-    fetch(`http://localhost:5000/getToysByText/${searchText}`)
+    fetch(`https://tech-toy-land-server-side.vercel.app/getToysByText/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         setAllToysData(data);
@@ -24,7 +24,6 @@ const AllToys = () => {
 
   return (
     <div className="overflow-x-auto my-8">
-      <h2>{allToysData.length}</h2>
       <div className="flex justify-center my-4">
         <input
           type="text"

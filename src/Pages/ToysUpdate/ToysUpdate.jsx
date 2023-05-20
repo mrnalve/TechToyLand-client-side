@@ -13,7 +13,7 @@ const ToysUpdate = () => {
     const quantity = form.quantity.value;
     const description = form.description.value;
     const updateToys = { price, quantity, description };
-    fetch(`http://localhost:5000/updateToys/${_id}`, {
+    fetch(`https://tech-toy-land-server-side.vercel.app/updateToys/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
