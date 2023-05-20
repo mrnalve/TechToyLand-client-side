@@ -1,14 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const {signUp, updateUserProfile} = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { signUp, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  // change title
+  useEffect(() => {
+    document.title = "TechToy | Register";
+  }, []);
+
+  // handle register button
   const handleRegistration = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,25 +46,25 @@ const Register = () => {
     }
     setError(errorMessage);
     if (!errorMessage) {
-      signUp(email,password)
-      .then(result =>{
-        const newUser = result.user
-        console.log(newUser);
-        toast('Successfully Registered!', {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+      signUp(email, password)
+        .then((result) => {
+          const newUser = result.user;
+          console.log(newUser);
+          toast("Successfully Registered!", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
           });
-        updateUserProfile(newUser, name, photoURL)
-        form.reset()
-        navigate('/')
-      })
-      .catch(error=> setError(error.message))
+          updateUserProfile(newUser, name, photoURL);
+          form.reset();
+          navigate("/");
+        })
+        .catch((error) => setError(error.message));
     }
   };
 
@@ -136,7 +142,7 @@ const Register = () => {
             >
               Register
             </button>
-            <ToastContainer/>
+            <ToastContainer />
             <p className="text-center text-gray-500 text-sm">
               Already have an account?{" "}
               <Link to="/login" className="text-[#ff8008] hover:underline">

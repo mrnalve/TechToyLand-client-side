@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const MyToysRow = ({ myToyData, handleDelete }) => {
   const { _id, sellerName, subCategory, price, quantity, productName } =
     myToyData;
-
   
   return (
     <tr className="space-y-8 text-center">

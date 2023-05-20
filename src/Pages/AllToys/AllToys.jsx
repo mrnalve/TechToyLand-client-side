@@ -6,14 +6,22 @@ const AllToys = () => {
   const toysData = useLoaderData();
   const [allToysData, setAllToysData] = useState(toysData);
   const [searchText, setSearchText] = useState("");
+
+  // handle search button
   const handleSearch = () => {
-      fetch(`http://localhost:5000/getToysByText/${searchText}`)
-      .then(res => res.json())
-      .then(data => {
-        setAllToysData(data)
+    fetch(`http://localhost:5000/getToysByText/${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAllToysData(data);
         console.log(data);
-      })
+      });
   };
+
+  // change title
+  useEffect(() => {
+    document.title = "TechToy | AllToys";
+  }, []);
+
   return (
     <div className="overflow-x-auto my-8">
       <h2>{allToysData.length}</h2>
@@ -24,9 +32,12 @@ const AllToys = () => {
           className="w-64 py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           onChange={(event) => setSearchText(event.target.value)}
         />
-        <button onClick={handleSearch} className="bg-[#ff8008] hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500">
-        Search
-      </button>
+        <button
+          onClick={handleSearch}
+          className="bg-[#ff8008] hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        >
+          Search
+        </button>
       </div>
       <table className="table table-zebra w-full">
         {/* head */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -14,7 +14,12 @@ const ToysDetails = () => {
     quantity,
     description,
   } = toys[0];
-  console.log(toys);
+  
+  // change title
+  useEffect(() => {
+    document.title = "TechToy | ToysDetails";
+  }, []);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row">

@@ -16,7 +16,7 @@ const ShopByCategory = () => {
     })
   },[activeTab])
   return (
-    <div className="py-8 bg-gray-100 rounded-xl">
+    <div className="py-8 bg-gray-100 rounded-xl" data-aos="zoom-in-right">
       <div className="container mx-auto px-4">
         <div>
           <div className="flex justify-center space-x-4">

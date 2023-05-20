@@ -3,7 +3,7 @@ import React from 'react';
 const BannerContent = () => {
     return (
         <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-r from-[#000000] to-[rgba(230,230,230, 0.8)]  flex">
-          <div className="flex flex-col justify-center w-full md:w-2/5 ml-5 md:ml-20">
+          <div className="flex flex-col justify-center w-full md:w-2/5 ml-5 md:ml-20" data-aos="fade-right">
             <h2 className="text-4xl text-white font-bold mb-4">
               Welcome to our Electronics Toy Shop
             </h2>

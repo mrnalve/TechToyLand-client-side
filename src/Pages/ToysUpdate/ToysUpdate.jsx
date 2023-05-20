@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -9,7 +9,7 @@ const ToysUpdate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const quantity = form.quantity.value;
     const description = form.description.value;
     const updateToys = { price, quantity, description };
@@ -32,6 +32,11 @@ const ToysUpdate = () => {
         }
       });
   };
+
+  // change title
+  useEffect(() => {
+    document.title = "TechToy | ToysUpdate";
+  }, []);
 
   return (
     <form

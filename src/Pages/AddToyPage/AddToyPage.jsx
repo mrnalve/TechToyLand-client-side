@@ -1,9 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const AddToyPage = () => {
   const {user} = useContext(AuthContext)
+
+  // change title
+  useEffect(() => {
+    document.title = "TechToy | AddToyPage";
+  }, []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,7 +18,7 @@ const AddToyPage = () => {
     const sellerName = form.sellerName.value;
     const sellerEmail = form.sellerEmail.value;
     const subCategory = form.subCategory.value;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
