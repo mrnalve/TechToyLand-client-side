@@ -39,7 +39,7 @@ const ToysDetails = () => {
       setReview(text);
     }
     const userReview = { review, displayName, photoURL };
-    fetch("http://localhost:5000/review", {
+    fetch("https://tech-toy-land-server-side.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
