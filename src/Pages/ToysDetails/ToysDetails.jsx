@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const ToysDetails = () => {
-  const [review, setReview] = useState();
   const { user } = useContext(AuthContext);
   const { displayName, photoURL } = user;
   const toys = useLoaderData();
@@ -35,10 +34,7 @@ const ToysDetails = () => {
       },
       showCancelButton: true,
     });
-    if (text) {
-      setReview(text);
-    }
-    const userReview = { review, displayName, photoURL };
+    const userReview = { review:text, displayName, photoURL };
     fetch("https://tech-toy-land-server-side.vercel.app/review", {
       method: "POST",
       headers: {
