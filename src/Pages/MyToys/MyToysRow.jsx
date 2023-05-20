@@ -5,7 +5,6 @@ const MyToysRow = ({ myToyData, handleDelete }) => {
   const { _id, sellerName, subCategory, price, quantity, productName } =
     myToyData;
 
-    // toys delete button
   
   return (
     <tr className="space-y-8 text-center">

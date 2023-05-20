@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,7 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [error, setError] = useState("");
   const { user, login, googleSignIn } = useContext(AuthContext);
-  console.log(user);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,10 +26,9 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
         toast("Successfully Login!", {
           position: "top-center",
-          autoClose: 2000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -36,9 +37,29 @@ const Login = () => {
           theme: "light",
         });
         form.reset()
+        navigate(from)
       })
       .catch((error) => setError(error.message));
   };
+
+  // handle google sign in
+  const handleGoogleSignIn = ()=>{
+    googleSignIn()
+    .then(result =>{
+      toast("Successfully Login!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      navigate(from)
+    })
+    .catch(error=> setError(error.message))
+  }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
@@ -87,14 +108,13 @@ const Login = () => {
               >
                 Login
               </button>
-              <ToastContainer/>
             </div>
           </div>
         </form>
         <p className="text-center text-gray-500 text-sm mb-4">
           Or login with Google:
         </p>
-        <button onClick={()=> googleSignIn()} className="border rounded-xl px-4 py-2 rounded-md w-full mb-4 hover:bg-slate-100 hover:scale-95 hover:transition-all">
+        <button onClick={handleGoogleSignIn} className="border px-4 py-2 rounded-md w-full mb-4 hover:bg-slate-100 hover:scale-95 hover:transition-all">
           <FcGoogle className="inline-block mx-2 h-6 w-auto" />
           Sign in with Google
         </button>

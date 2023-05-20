@@ -4,6 +4,7 @@ import Gallery from '../Gallery/Gallery';
 import ShopByCategory from '../ShopByCategory/ShopByCategory';
 import CustomerReviews from '../CustomersReviews/CustomersReviews';
 import PromotionsSection from '../PromotionsSection/PromotionsSection';
+import { ToastContainer } from 'react-toastify';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <ShopByCategory></ShopByCategory>
             <CustomerReviews></CustomerReviews>
             <PromotionsSection></PromotionsSection>
+            <ToastContainer/>
         </>
     );
 };

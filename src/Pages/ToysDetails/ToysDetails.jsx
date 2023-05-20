@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const ToysDetails = () => {
   const toys = useLoaderData();
@@ -33,6 +34,7 @@ const ToysDetails = () => {
         <h3 className="text-xl font-bold mb-2">Description</h3>
         <p>{description}</p>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import takaSign from "../../../public/taka.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ToyCard = ({ toy }) => {
-  const { _id,  pictureUrl, productName, price, rating } = toy;
+  const { _id, pictureUrl, productName, price, rating } = toy;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
@@ -32,9 +36,10 @@ const ToyCard = ({ toy }) => {
           />
         </svg>
       </div>
-      <Link to={`/toysDetails/${_id}`}><button className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
-        View Details
-      </button></Link>
+      
+        <button className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded">
+        <Link to={`/toysDetails/${_id}`}>View Details</Link>
+      </button>
     </div>
   );
 };

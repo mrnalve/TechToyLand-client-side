@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
   const [error, setError] = useState("");
   const {signUp, updateUserProfile} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const handleRegistration = (e) => {
     e.preventDefault();
@@ -55,6 +56,7 @@ const Register = () => {
           });
         updateUserProfile(newUser, name, photoURL)
         form.reset()
+        navigate('/')
       })
       .catch(error=> setError(error.message))
     }
